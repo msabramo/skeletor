@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import argparse
 import errno
 import logging
@@ -140,3 +142,7 @@ def skeletor():
 
             with open(new_path, 'w') as new_file:
                 new_file.write(content)
+
+
+if __name__ == '__main__':
+    skeletor()
