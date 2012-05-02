@@ -1,0 +1,9 @@
+#!/usr/bin/env python
+import logging
+from skeletor import skeletor, CommandError
+
+logging.basicConfig(format='%(message)s')
+try:
+    skeletor()
+except CommandError as e:
+    raise SystemExit(u'Error: %s' % e)
