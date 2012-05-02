@@ -15,6 +15,7 @@ setup(
     include_package_data=True,
     platforms='any',
     install_requires=['jinja2'],
+    test_suite='tests',
     classifiers=[
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
