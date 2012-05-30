@@ -19,12 +19,11 @@ class CommandError(Exception):
 def validate_module_name(name):
     if not re.search(r'^[_A-Za-z][_A-Za-z0-9]*$', name):
         if not re.search(r'^[_A-Za-z]', name):
-            message = (u'make sure that the name starts with a letter or '
-                       u'an underscore')
+            message = 'make sure that the name starts with a letter or an underscore'
         else:
-            message = u'use only letters, numbers and underscores'
+            message = 'use only letters, numbers and underscores'
         raise CommandError(
-            u'%r is not a valid project name. Please %s.' % (name, message)
+            '%r is not a valid project name. Please %s.' % (name, message)
         )
     return name
 
@@ -39,8 +38,7 @@ def mkdir(name):
 
 def skeletor():
     parser = argparse.ArgumentParser(
-        description=u'Copy a project layout template into the specified '
-                    u'directory.'
+        description='Copy a project layout template into the specified directory.'
     )
 
     parser.add_argument('name', help='The name of the project.')
@@ -85,22 +83,22 @@ def skeletor():
             os.makedirs(directory)
         except OSError as e:
             if e.errno == errno.EEXIST:
-                message = u"'%s' already exists" % directory
+                message = "'%s' already exists" % directory
             else:
                 message = e
             raise CommandError(message)
     else:
         directory = os.path.abspath(os.path.expanduser(args.directory))
         if not os.path.exists(directory):
-            raise CommandError(u"Target directory '%s' does not exist. "
-                               u"Please create it first." % directory)
+            raise CommandError("Target directory '%s' does not exist. "
+                               "Please create it first." % directory)
 
     context = {'project_name': project_name}
 
     template_dir = os.path.abspath(os.path.expanduser(args.template))
     if not os.path.exists(template_dir):
-        raise CommandError(u"Could not find template directory "
-                           u"'%s'" % template_dir)
+        raise CommandError("Could not find template directory "
+                           "'%s'" % template_dir)
 
     prefix_length = len(template_dir) + 1
 
